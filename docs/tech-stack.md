@@ -47,6 +47,14 @@ Three administrators: `webmaster` (ID 1, **the MCP user: never change its creden
 | Novamira / Novamira Pro | 1.12.16 / 1.14.0 | yes | MCP connection. **Never update, deactivate or delete** |
 | Cloudinary | 3.3.8 | **no** | Installed but inactive (cleanup candidate, see [open-items.md](open-items.md)) |
 
+## Comments
+
+Comments are disabled in **Settings → Discussion** (`default_comment_status` off), not by code. WPCode 338
+"Completely Disable Comments" is only WPCode's inactive default sample. On 2026-11-23 every published post,
+page and CPT had `comment_status` closed and there were no comments. Pingbacks/trackbacks are still on
+(`default_ping_status` open, `default_pingback_flag` 1, 20 posts with pings open, 2 trackbacks pending):
+see [open-items.md](open-items.md) #8.
+
 ## Languages
 
 Linguise: default `de`, enabled `en` + `de`, switcher as popup (`flag_display_type` popup), placed
