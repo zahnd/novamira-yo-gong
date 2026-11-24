@@ -44,10 +44,11 @@ that point to yo-gong.com stay as links.
 5. Look at the preview as admin in Chrome (`novamira/create-admin-access-link`, then `/?p=<id>&preview=true`).
 6. Report the draft link, plus any typos in the source text. Keep the author's wording; only fix broken
    formatting markup and proper names (e.g. "Casa Estrelle" → "Casa Estrella"), and say so.
-7. Add a line to the Novamira Session log.
+7. When publishing: set the status to publish, then **purge the page cache through xCloud** (`sites.cache.purge`, site `1c37b5e0-…`, team Sun Chasing Web Design). Nginx Helper's purge fails on this server. Check as a guest with `curl -sI` that home and /blog/ return `x-cache: MISS` and list the new post.
+8. Add a line to the Novamira Session log and update the table below.
 
 ## Published from newsletters
 
 | Post | Title | Flodesk web view | Status |
 |---|---|---|---|
-| 2300 | Warte nicht auf die Veränderung – läute Du sie ein | `view.flodesk.com/emails/6ae1f466ffaa2a1506843bc4` | draft (2026-11-23), media 2301–2305 |
+| 2300 | Warte nicht auf die Veränderung – läute Du sie ein | `view.flodesk.com/emails/6ae1f466ffaa2a1506843bc4` | **published** 2026-11-24 04:28 site time, `/blog/warte-nicht-auf-die-veraenderung-laeute-du-sie-ein/`, media 2301–2305 |

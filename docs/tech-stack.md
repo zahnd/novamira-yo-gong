@@ -7,11 +7,11 @@ _Verified through the Novamira MCP on 2026-11-23._
 | | |
 |---|---|
 | WordPress | 7.1.5, PHP 8.4.28, locale `de_CH`, timezone Europe/Zurich |
-| Server | nginx 1.31.9, hostname `scwd-prod-1`, path `/var/www/www.yo-gong.com/` (path layout as on xCloud; hosting provider not confirmed via the xCloud MCP yet) |
+| Hosting | **xCloud**, team **Sun Chasing Web Design** (not the Bergwerk team), server "SCWD Prod 1" (`scwd-prod-1`), site uuid `1c37b5e0-2fb2-4e63-a538-f80998fc6c3c`, server uuid `18518350-1209-42ce-a236-d6b66e504615`. nginx 1.31.9, path `/var/www/www.yo-gong.com/`. In the xCloud MCP pass `team: 81c0f251-6c0e-4140-b93d-cd157eaf274b` |
 | DB prefix | `wfzp_` |
 | Environment | **Production only, no staging** |
 | Theme | Hello Elementor (parent), **no child theme**. No mu-plugins |
-| Page cache | Nginx FastCGI cache, purged by **Nginx Helper** (purge on edit, `unlink_files`) |
+| Page cache | xCloud Nginx FastCGI cache (`x-cache: HIT/MISS/BYPASS`). **Nginx Helper can't purge it**: its `unlink()` on `/etc/nginx/cache/www.yo-gong.com/…` fails with "Read-only file system" (seen when publishing post 2300, 2026-11-23). Guests keep getting the old home and /blog/ until the cache is purged through **xCloud** (`sites.cache.purge` with the site uuid and team above, or the dashboard). Check with `curl -sI` for `x-cache` |
 | Cron | `DISABLE_WP_CRON` = true; a server cron runs wp-cron (no overdue events on 2026-11-23) |
 | Search engines | Indexing allowed (`blog_public` = 1); sitemap `https://www.yo-gong.com/sitemap_index.xml` (Rank Math) |
 | Admin e-mail | on the domain sunchasingtravelers.com (the same owner also has a site reachable as MCP `novamira-sunchasingtravel`) |

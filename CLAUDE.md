@@ -16,7 +16,8 @@ the tool to re-sync them.
 | Content model | **JetEngine**: CPTs `event`, `person`, `jet-cpt-sessions`, `jet-cpt-location`, `newsletter`; meta boxes on retreat posts, podcast episodes (`sr_playlist`, Sonaar) and pages; 15 queries, 10 listings |
 | Forms / mail | Fluent Forms 3 (contact) and 4 (newsletter, forwarded to **Flodesk** by WPCode 1641), both in the footer. FluentSMTP → Postmark |
 | Languages | DE (default) + EN machine translation through **Linguise** |
-| Other | Rank Math SEO + PRO, Complianz premium (EU), AltText.ai, WP fail2ban, Nginx FastCGI cache + Nginx Helper |
+| Hosting / cache | **xCloud**, team Sun Chasing Web Design, server SCWD Prod 1. Nginx FastCGI page cache: **Nginx Helper can't purge it**, so purge through xCloud after publishing ([docs/tech-stack.md](docs/tech-stack.md)) |
+| Other | Rank Math SEO + PRO, Complianz premium (EU), AltText.ai, WP fail2ban |
 | Custom code | WPCode Lite (4 snippets, 2 active) + Elementor Kit custom CSS. Nothing else |
 | MCP user | WP user 1 `webmaster` |
 
@@ -28,7 +29,7 @@ the tool to re-sync them.
 4. **JetEngine owns the content model.** Use the `novamira/jetengine-*` abilities, and never register CPTs or fields in PHP.
 5. **Custom code only in WPCode**, changed with the safe procedure in [docs/custom-code.md](docs/custom-code.md). Then re-sync `wpcode-snippets/` and commit.
 6. **Don't break the newsletter.** WPCode 1641 depends on form 4's field names `names` / `email` ([docs/forms-and-email.md](docs/forms-and-email.md)).
-7. After template or CSS changes: `novamira/elementor-clear-document-cache`, then purge the Nginx cache. Check the delivered page as a guest in Chrome.
+7. After template or CSS changes: `novamira/elementor-clear-document-cache`. After any visible change (publishing too), purge the page cache **through xCloud** (`sites.cache.purge`), because Nginx Helper's purge fails here. Check the delivered page as a guest.
 8. Content is German (`de_CH`, "ss", never "ß"). Repo docs are English.
 
 ## Knowledge stores: keep all three in step

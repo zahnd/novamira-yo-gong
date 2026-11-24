@@ -2,9 +2,9 @@
 novamira_id: 2296
 title: "Traps on yo-gong.com"
 type: project
-description: "Non-obvious dependencies on yo-gong.com: Flodesk newsletter webhook in WPCode 1641 tied to Fluent Form 4 field names, year shortcode 1385 in the footer, comments off via Settings > Discussion (not WPCode), Linguise popup CSS in the Kit, server cron, fail2ban"
+description: "Non-obvious dependencies on yo-gong.com: Flodesk newsletter webhook in WPCode 1641 tied to Fluent Form 4 field names, year shortcode 1385 in the footer, comments off via Settings > Discussion (not WPCode), Linguise popup CSS in the Kit, server cron, fail2ban, Nginx Helper cannot purge (purge via xCloud)"
 created: 2026-11-24 04:03:07
-updated: 2026-11-24 04:15:33
+updated: 2026-11-24 04:31:32
 ---
 
 # Traps on yo-gong.com
@@ -18,6 +18,7 @@ Non-obvious things on www.yo-gong.com (first MCP audit 2026-11-23).
 - **WP-Cron is disabled** (`DISABLE_WP_CRON`); a server cron runs it (no overdue events on 2026-11-23). If scheduled things stop, check the server cron first.
 - **WP fail2ban is active.** Don't request `/?author=N` or `/wp-json/wp/v2/users` from the server itself (loopback): it bans the server IP. See `bergwerk/wordpress -> debugging/Server-side enumeration probes get the server banned by fail2ban`.
 - Mail goes through **FluentSMTP -> Postmark** from daniela@yo-gong.com.
+- **Nginx Helper cannot purge the page cache**: its unlink() on /etc/nginx/cache/www.yo-gong.com/... fails with "Read-only file system" (seen 2026-11-23 when publishing post 2300). Home and /blog/ stay stale for guests (x-cache: HIT) until the cache is purged through xCloud. Hosting: xCloud, team Sun Chasing Web Design (not Bergwerk), server SCWD Prod 1.
 
 **Why:** these are the places where a harmless-looking change breaks something without an error.
 **How to apply:** check this list before touching forms, the footer, comments, WPCode or Linguise.
