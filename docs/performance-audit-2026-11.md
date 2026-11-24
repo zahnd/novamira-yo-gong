@@ -2,6 +2,8 @@
 
 > **Update 2026-11-24 afternoon: R1, R2 and the Instagram aspect ratio are implemented.** Results and
 > details are in [Implemented](#implemented-2026-11-24) at the end. R3 turned out to save no bytes (see there).
+> **Update 2026-11-24 later: the safe part of R6 is implemented** (WPCode 2320, mobile 64 → 67). See
+> [R6 render blocking](#r6-render-blocking-2026-11-24).
 
 Triggered by Stefan: "images seem to be pretty big as they seem to load long". The audit was **read-only**:
 nothing on the site was changed. Sources: Novamira MCP (media library, Elementor data, settings), guest
@@ -135,6 +137,60 @@ correctly, and the Kit's global colours are intact.
 
 ### Still open
 
-- **R6 render blocking** is now the biggest item on mobile (est. −4.3 s FCP).
+- **R6 render blocking** is now the biggest item on mobile (est. −4.3 s FCP). Partly done, see below.
 - R4 (oversized originals, PNG screenshots, e.g. the 1.6 MB PNG on the Costa Rica retreat page), R5 (WebP), R7 (stale Linguise cache).
 - **Rule from now on:** every new background image in Elementor gets an *Image Resolution* (cards `featured_landscape`, full-width sections `header_1920`). Without one, Elementor delivers the original.
+
+## R6 render blocking (2026-11-24)
+
+Approved by Stefan ("proceed"). Before: 36 stylesheets and 4 scripts in `<head>` blocked the first paint,
+165 KB compressed in total. The Adobe Fonts kit CSS (`use.typekit.net/bir0hip.css`, `font-display: auto`) is
+the **first** stylesheet and `@import`s `p.typekit.net/p.css`: a chain over two more origins.
+
+What was checked first:
+
+- **Fluent Forms** is only in Footer 183 and in popup 1362 "Newsletter", which has **no triggers** (opens on
+  click only). **JetElements Instagram** is only in the footer.
+- Header 50 uses Element Pack's **section sticky** (and social icons), so `bdt-uikit`/`ep-helper` and
+  `widget-social-icons` stay blocking. No Element Pack widgets are used anywhere; only that extension, the
+  shape builder (pages 19, 2194, 2213, 2243, 2264) and a badge (2264).
+- `linguise_switcher` and `sonaar-music-scrollbar` have no dependents. jQuery has many: it stays in the head.
+- Elementor: `e_font_icon_svg` and the other stable performance features are already active.
+  `e_optimized_markup` (inactive) changes the DOM and would need a full visual check; not done.
+
+Implemented in **WPCode 2320 "YG: Render-Blocking reduzieren"** (front end only):
+
+| Change | Effect |
+|---|---|
+| `preconnect` to `use.typekit.net` (with and without `crossorigin`) and `p.typekit.net` | The font chain starts with the HTML. Lighthouse "Font display" 160 ms → 30 ms |
+| `strategy=defer` for `linguise_switcher` (30 KB) and `sonaar-music-scrollbar` | 2 of 4 head scripts no longer block. Language switcher checked: works |
+| 5 footer-only stylesheets (`fluentform-elementor-widget`, `fluent-form-styles`, `fluentform-public-default`, `jet-instagram-gallery`, `jet-instagram-gallery-skin`) load with `media="print"` + onload swap and a `<noscript>` fallback | 36 → 31 blocking stylesheets. Footer forms and Instagram tiles checked in Chrome: styled as before, no console errors |
+
+Result (xCloud PageSpeed, home, mobile; one run each, so ±2–3 points are noise):
+
+| | Before R6 | After R6 |
+|---|---|---|
+| Performance | 64 | **67** |
+| FCP | 2.9 s | 2.6 s |
+| LCP | 5.9 s | 5.6 s |
+| Speed Index | 9.9 s | 9.0 s |
+| TBT | 120 ms | 50 ms |
+| Render-blocking estimate | −4.3 s | −3.8 s |
+
+**Incident while activating:** the first upload of 2320 still had the repo file's `<?php` line. WPCode Lite
+concatenates all `everywhere` snippets into one `eval()`, so the parse error stopped **2316 and the Flodesk
+webhook 1641** too, from about 14:15 to 14:19 UTC. Caught in the guest check (2316's preload was missing),
+2320 set back to draft at once; no form submission came in during that window. Re-uploaded without the
+tag, with a combined parse check before activation. The procedure in [custom-code.md](custom-code.md) now
+covers this.
+
+### Left in R6 (needs a decision)
+
+- **31 stylesheets still block** (Elementor, Element Pack, JetEngine, JetTricks, Hello, Complianz, Linguise,
+  per-template `post-*.css`). Removing them needs either a CSS-combining/critical-CSS plugin (e.g. a
+  performance plugin with "delay/combine CSS"; new plugin, needs a full visual check) or Elementor's
+  *CSS Print Method: Internal* (inlines the `post-*.css` files; saves 7 requests, makes every HTML page larger).
+- **`font-display: swap` for Adobe Fonts** is set in the Adobe Fonts web project (fonts.adobe.com →
+  Web Projects → kit `bir0hip` → Font display), not on the site. Needs the account that owns the kit.
+  Now worth only ~30 ms by Lighthouse's estimate.
+- jQuery and jQuery Migrate stay blocking in `<head>`: Elementor, Element Pack and Sonaar need them early.

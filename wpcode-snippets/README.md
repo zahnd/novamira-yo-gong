@@ -11,7 +11,8 @@ and `live_sha1`: the sha1 of the code exactly as stored in `post_content` on the
 The files are normalised, so their own sha1 differs from `live_sha1`:
 
 - CRLF → LF (snippets saved through the WPCode admin textarea are stored with CRLF; see `live_has_crlf`),
-- PHP files get a leading `<?php` line (WPCode stores PHP without it and `eval()`s it),
+- PHP files get a leading `<?php` line (WPCode stores PHP without it and `eval()`s it; **strip it again before
+  uploading**, or every `everywhere` snippet stops, see [docs/custom-code.md](../docs/custom-code.md)),
 - every file ends with exactly one newline (WPCode stores none).
 
 | ID | File | Type | Location | Status |
@@ -21,5 +22,6 @@ The files are normalised, so their own sha1 differs from `live_sha1`:
 | 1385 | `1385-dynamic-year-copyright-shortcode.php` | php | shortcode `[wpcode id="1385"]` | active |
 | 1641 | `1641-subscribe-user-in-flodesk-using-webhook.php` | php | everywhere | active |
 | 2316 | `2316-yg-bildgrossen-fur-hintergrundbilder-header-preload.php` | php | everywhere | active |
+| 2320 | `2320-yg-render-blocking-reduzieren.php` | php | everywhere | active |
 
 What each one does: [docs/custom-code.md](../docs/custom-code.md). Last pulled 2026-11-24.

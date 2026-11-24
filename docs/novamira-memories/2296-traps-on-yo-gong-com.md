@@ -4,7 +4,7 @@ title: "Traps on yo-gong.com"
 type: project
 description: "Non-obvious dependencies on yo-gong.com: Flodesk newsletter webhook in WPCode 1641 tied to Fluent Form 4 field names, year shortcode 1385 in the footer, comments off via Settings > Discussion (not WPCode), Linguise popup CSS in the Kit, server cron, fail2ban, Nginx Helper cannot purge (purge via xCloud)"
 created: 2026-11-24 04:03:07
-updated: 2026-11-24 13:53:57
+updated: 2026-11-24 15:24:58
 ---
 
 # Traps on yo-gong.com
@@ -20,6 +20,8 @@ Non-obvious things on www.yo-gong.com (first MCP audit 2026-11-23).
 - Mail goes through **FluentSMTP -> Postmark** from daniela@yo-gong.com.
 - **Nginx Helper cannot purge the page cache**: its unlink() on /etc/nginx/cache/www.yo-gong.com/... fails with "Read-only file system" (seen 2026-11-23 when publishing post 2300). Home and /blog/ stay stale for guests (x-cache: HIT) until the cache is purged through xCloud. Hosting: xCloud, team Sun Chasing Web Design (not Bergwerk), server SCWD Prod 1.
 - **Background images need an Image Resolution**, or Elementor delivers the original upload (up to 4.9 MB was found). Since 2026-11-24 all backgrounds have one: cards featured_landscape, podcast/event column large, headers and full-width sections header_1920 (new size, 1920 box, registered in Image Regenerate & Select Crop). For DYNAMIC backgrounds (featured image, JetEngine banner meta) Elementor ignores the size; **WPCode 2316** makes it apply and also preloads the header image. Keep 2316 active. Details: repo docs/performance-audit-2026-11.md.
+- **WPCode 2320** (2026-11-24, render blocking R6): preconnects Adobe Fonts, defers the head scripts linguise_switcher and sonaar-music-scrollbar, and loads the Fluent Forms and JetElements Instagram stylesheets without blocking (they are only in the footer and the click-only popup 1362). If a form is ever placed near the top of a page, take the Fluent Forms handles out of 2320's list or it shows unstyled for a moment.
+- **WPCode `everywhere` snippets run as one eval()**: one broken snippet stops 1641, 2316 and 2320 together, with no error on the page. Happened 2026-11-24 for 4 minutes (stray `<?php`).
 - **Instagram footer** (JetElements, widget 8c17df3 in footer 183): images come from Instagram's CDN at full size via the Graph API; the widget's photo_size setting changes nothing. Tiles are 3:4 via widget custom CSS since 2026-11-24.
 
 **Why:** these are the places where a harmless-looking change breaks something without an error.

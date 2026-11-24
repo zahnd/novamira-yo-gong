@@ -117,5 +117,27 @@
     "compiled_css": null,
     "live_sha1": "dd0d40555fc5bf71ce5eabab35a654c4eca54965",
     "live_has_crlf": false
+  },
+  {
+    "id": 2320,
+    "title": "YG: Render-Blocking reduzieren",
+    "status": "publish",
+    "active": true,
+    "type": "php",
+    "location": "everywhere",
+    "tags": [],
+    "auto_insert": "1",
+    "priority": "10",
+    "conditional_logic_enabled": false,
+    "conditional_logic": null,
+    "library_id": null,
+    "note": null,
+    "load_as_file": null,
+    "created": "2026-11-24 15:17:14",
+    "modified": "2026-11-24 15:17:14",
+    "file": "2320-yg-render-blocking-reduzieren.php",
+    "compiled_css": null,
+    "live_sha1": "3fd2876c9c9cd534952618eb306e6ce3eadea5b6",
+    "live_has_crlf": false
   }
 ]

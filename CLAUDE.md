@@ -18,7 +18,7 @@ the tool to re-sync them.
 | Languages | DE (default) + EN machine translation through **Linguise** |
 | Hosting / cache | **xCloud**, team Sun Chasing Web Design, server SCWD Prod 1. Nginx FastCGI page cache: **Nginx Helper can't purge it**, so purge through xCloud after publishing ([docs/tech-stack.md](docs/tech-stack.md)) |
 | Other | Rank Math SEO + PRO, Complianz premium (EU), AltText.ai, WP fail2ban |
-| Custom code | WPCode Lite (4 snippets, 2 active) + Elementor Kit custom CSS. Nothing else |
+| Custom code | WPCode Lite (6 snippets, 4 active: 1385, 1641, 2316, 2320) + Elementor Kit custom CSS. Nothing else |
 | MCP user | WP user 1 `webmaster` |
 
 ## Rules
