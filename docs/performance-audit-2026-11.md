@@ -184,7 +184,11 @@ webhook 1641** too, from about 14:15 to 14:19 UTC. Caught in the guest check (23
 tag, with a combined parse check before activation. The procedure in [custom-code.md](custom-code.md) now
 covers this.
 
-### Left in R6 (needs a decision)
+### Left in R6: decided not to do (Stefan, 2026-11-24)
+
+Stefan: aim for a working, good result, not a perfect score; the client doesn't want to spend much.
+So the remaining stylesheets and the Adobe Fonts setting stay as they are. For the record:
+
 
 - **31 stylesheets still block** (Elementor, Element Pack, JetEngine, JetTricks, Hello, Complianz, Linguise,
   per-template `post-*.css`). Removing them needs either a CSS-combining/critical-CSS plugin (e.g. a
