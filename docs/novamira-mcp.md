@@ -53,5 +53,6 @@ It was empty until 2026-11-23, then seeded:
 | 2295 | Site rules | project |
 | 2296 | Traps on yo-gong.com | project |
 | 2297 | Session log | project (one line per session) |
+| 2307 | Newsletter to blog post | project (added 2026-11-23) |
 
 Update them by `id` and don't create duplicates. Verbatim mirror: [novamira-memories/](novamira-memories/README.md).

@@ -35,7 +35,7 @@ All 13 pages are published; there are no drafts.
 
 20 published posts in two categories:
 
-- **Blog** (14): personal essays, 2024-03 to 2026-08 (newest 2264 "Es bewegt sich alles in Kreisen", 2026-08-02).
+- **Blog** (14): personal essays, 2024-03 to 2026-08 (newest 2264 "Es bewegt sich alles in Kreisen", 2026-08-02). They are the Flodesk newsletters, republished: see [newsletter-posts.md](newsletter-posts.md). Draft 2300 (2026-11-23) is the next one.
 - **Retreats** (category ID 8, 6 posts): each retreat is a post with the JetEngine meta box "Retreats"
   (dates, location, costs, documents) and is rendered by single template 323 "Retreat". Several
   "Yoga & Klang Retreat Schweibenalp" posts exist, one per year (590 = 2024, 2094 = 2025, 2243 = 2026),

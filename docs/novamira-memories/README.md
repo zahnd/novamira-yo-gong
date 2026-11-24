@@ -12,3 +12,4 @@ The store was empty until the first audit on 2026-11-23 seeded it:
 | [2295](2295-site-rules.md) | Site rules | project | How to work on the site |
 | [2296](2296-traps-on-yo-gong-com.md) | Traps on yo-gong.com | project | Non-obvious dependencies |
 | [2297](2297-session-log.md) | Session log | project | One line per session |
+| [2307](2307-newsletter-to-blog-post.md) | Newsletter to blog post | project | Recurring job: Flodesk newsletter → draft blog post |

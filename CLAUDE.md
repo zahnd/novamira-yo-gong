@@ -61,9 +61,11 @@ the tool to re-sync them.
 | [docs/forms-and-email.md](docs/forms-and-email.md) | Fluent Forms 3 and 4, the Flodesk webhook, Turnstile, FluentSMTP/Postmark |
 | [docs/custom-code.md](docs/custom-code.md) | WPCode snippets, what depends on them, the safe change procedure |
 | [docs/novamira-mcp.md](docs/novamira-mcp.md) | Working through the MCP: safety rules, traps, skills, abilities, memory store IDs |
+| [docs/newsletter-posts.md](docs/newsletter-posts.md) | **Recurring job:** turning a Flodesk newsletter into a blog post (structure, what to leave out, procedure, list of posts done) |
 | [docs/open-items.md](docs/open-items.md) | Findings and cleanup candidates waiting for a decision |
 | [docs/novamira-memories/](docs/novamira-memories/README.md) | Verbatim mirror of the site's Novamira memories |
 | [wpcode-snippets/](wpcode-snippets/README.md) | Byte-exact mirror of every WPCode snippet, `manifest.json` with `live_sha1` |
+| [tools/newsletter/](tools/newsletter/flodesk_extract.py) | Extracts text, links and images from a Flodesk web-view email |
 | [tools/sync/](tools/sync/README.md) | How to re-pull snippets and memories from the site into this repo |
 
 _First MCP audit (read-only): 2026-11-23._
