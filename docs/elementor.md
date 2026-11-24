@@ -30,6 +30,21 @@ _Verified through the Novamira MCP on 2026-11-23._
 
 JetEngine listings (also Elementor documents) are in [content-model.md](content-model.md).
 
+## Background images: always set an Image Resolution
+
+Without an *Image Resolution*, Elementor delivers the **original upload** as a background (up to 4.9 MB
+was found). Since 2026-11-24 every background on the site has a size:
+
+| Use | Size |
+|---|---|
+| Listing cards (845, 1603, 283, 368, 1868) | `featured_landscape` (800×533 crop) |
+| Podcast cards (395), event image column (1888) | `large` (1024) |
+| Header templates (293, 323, 882, 1578, 1888, 490) and full-width section backgrounds | `header_1920` (1920×1920 box, no crop; registered in Image Regenerate & Select Crop) |
+
+For **dynamic** backgrounds (featured image, JetEngine banner meta), Elementor itself ignores the size.
+WPCode **2316** makes it apply; keep it active. Background sizes are not responsive: one file for all
+screens. The general mechanism is in `bergwerk/wordpress → elementor/Dynamic background images ignore Image Resolution`.
+
 ## Kit 7: global colours
 
 | Title | ID | Value |

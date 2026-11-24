@@ -39,7 +39,7 @@ Three administrators: `webmaster` (ID 1, **the MCP user: never change its creden
 | Rank Math SEO + PRO | 1.0.280 / 3.0.124 | yes | SEO, sitemap |
 | AltText.ai | 1.10.46 | yes | Alt texts (see `bergwerk/wordpress → alttext-ai/AltText.ai on Swiss sites`) |
 | WPCode Lite | 2.4.0 | yes | Custom code ([custom-code.md](custom-code.md)) |
-| Image Regenerate & Select Crop | 8.2.2 | yes | Image sizes and crops |
+| Image Regenerate & Select Crop | 8.2.2 | yes | Owns the image sizes: custom `featured_landscape` 800×533 crop, `5x4` 1000×800 crop, `header_1920` 1920×1920 (added 2026-11-24). `medium_large`, `1536x1536` and `2048x2048` are on its global ignore list (never generated) |
 | Duplicate Page | 4.5.9 | yes | Editorial helper |
 | Temporary Login Without Password | 1.9.10 | yes | Temporary admin logins |
 | WP fail2ban | 5.5.0 | yes | Login/enumeration protection (trap: see [novamira-mcp.md](novamira-mcp.md)) |

@@ -4,7 +4,7 @@ title: "Session log"
 type: project
 description: "One line per work session on yo-gong.com: date, what changed, where it is documented. Newest last."
 created: 2026-11-24 04:03:09
-updated: 2026-11-24 13:37:44
+updated: 2026-11-24 13:53:57
 ---
 
 # Session log
@@ -16,3 +16,4 @@ One line per session: `YYYY-MM-DD: what was done; what changed on the site; docs
 - 2026-11-23: Newsletter "WARTE NICHT AUF DIE VERAENDERUNG" (Flodesk 6ae1f466...) created as DRAFT post 2300 "Warte nicht auf die Veraenderung - laeute Du sie ein" (category Blog, author 2), media 2301-2305 (alt texts by AltText.ai). Not published. New memory 2307 "Newsletter to blog post"; repo docs/newsletter-posts.md + tools/newsletter/flodesk_extract.py.
 - 2026-11-23: Post 2300 PUBLISHED (Stefan), /blog/warte-nicht-auf-die-veraenderung-laeute-du-sie-ein/. Nginx Helper purge failed (read-only cache dir); page cache purged via xCloud (site 1c37b5e0..., team Sun Chasing Web Design), verified as guest: home and /blog/ list the post (x-cache MISS). Repo pushed to GitHub.
 - 2026-11-24: Read-only performance/image audit (Stefan: images load slowly). PageSpeed mobile 52, LCP 26.4 s. Root cause: 31 Elementor background images (listing cards, headers) delivered as originals (up to 4.9 MB), header image lazy-loaded, Instagram footer at full resolution, no WebP. Nothing changed. Repo docs/performance-audit-2026-11.md, recommendations R1-R7.
+- 2026-11-24: Images R1/R2 implemented (Stefan: proceed): size header_1920 registered + generated for 86 images; WPCode 2316 (dynamic backgrounds honour Image Resolution + header preload); 20 Elementor documents got background sizes (backups _backup_elementor_data_20261124); Instagram footer tiles 3:4 (widget CSS). Elementor CSS cleared, xCloud purged, checked in Chrome. PageSpeed mobile 52->64, LCP 26.4->5.9 s; desktop 92. Next: render blocking (R6).

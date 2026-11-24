@@ -95,5 +95,27 @@
     "compiled_css": null,
     "live_sha1": "e6b64a9469f7852c6f1f025d6e1b47fb6c6d9385",
     "live_has_crlf": true
+  },
+  {
+    "id": 2316,
+    "title": "YG: Bildgrössen für Hintergrundbilder + Header-Preload",
+    "status": "publish",
+    "active": true,
+    "type": "php",
+    "location": "everywhere",
+    "tags": [],
+    "auto_insert": "1",
+    "priority": "10",
+    "conditional_logic_enabled": false,
+    "conditional_logic": null,
+    "library_id": null,
+    "note": null,
+    "load_as_file": null,
+    "created": "2026-11-24 13:47:32",
+    "modified": "2026-11-24 13:47:32",
+    "file": "2316-yg-bildgrossen-fur-hintergrundbilder-header-preload.php",
+    "compiled_css": null,
+    "live_sha1": "dd0d40555fc5bf71ce5eabab35a654c4eca54965",
+    "live_has_crlf": false
   }
 ]

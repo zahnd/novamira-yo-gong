@@ -15,8 +15,9 @@ There is no child theme, no mu-plugin and no Customizer CSS. _Verified 2026-11-2
 | 338 | Completely Disable Comments | php | everywhere | inactive (draft) | Default sample WPCode creates on install (library ID 12). Unused: comments are disabled in **Settings → Discussion** instead (see [tech-stack.md](tech-stack.md#comments)) |
 | 1385 | Dynamic Year Copyright Shortcode | php | shortcode only (`auto_insert` 0) | **active** | `echo "&#169; " . date('Y')`. Used as `[wpcode id="1385"]` in Footer 183 |
 | 1641 | Subscribe user in Flodesk using Webhook | php | everywhere | **active** | Forwards Fluent Form 4 sign-ups to the Flodesk webhook relay. See [forms-and-email.md](forms-and-email.md#newsletter--flodesk) |
+| 2316 | YG: Bildgrössen für Hintergrundbilder + Header-Preload | php | everywhere | **active** (2026-11-24) | Makes Elementor honour a background's *Image Resolution* also for dynamic tags (cards, headers), and preloads the header image. See [performance-audit-2026-11.md](performance-audit-2026-11.md#implemented-2026-11-24). **Deactivating it brings back the original-size card and header images** |
 
-Option `wpcode_snippets` (what loads automatically) holds only 1641 under `everywhere`; 1385 runs only
+Option `wpcode_snippets` (what loads automatically) holds 2316 and 1641 under `everywhere`; 1385 runs only
 through its shortcode. The WPCode trash is empty.
 
 ## Changing a snippet

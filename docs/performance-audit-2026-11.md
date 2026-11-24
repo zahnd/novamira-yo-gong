@@ -1,5 +1,8 @@
 # Performance and image audit (2026-11-24)
 
+> **Update 2026-11-24 afternoon: R1, R2 and the Instagram aspect ratio are implemented.** Results and
+> details are in [Implemented](#implemented-2026-11-24) at the end. R3 turned out to save no bytes (see there).
+
 Triggered by Stefan: "images seem to be pretty big as they seem to load long". The audit was **read-only**:
 nothing on the site was changed. Sources: Novamira MCP (media library, Elementor data, settings), guest
 requests with curl over 11 pages, and an xCloud PageSpeed scan (Lighthouse, mobile). Image re-encodes were
@@ -98,3 +101,40 @@ Elementor (`elementor_font_display` = swap only covers Google Fonts).
 | R7 | Delete the stale Linguise cache folder `e200cec1…` (82 MB) | Disk only | Low; confirm first |
 
 Measure again with xCloud PageSpeed (`sites.pagespeed.scan`) after R1–R3.
+
+## Implemented 2026-11-24
+
+Approved by Stefan ("proceed"), together with a change to the Instagram feed's aspect ratio.
+
+| Step | What was done |
+|---|---|
+| New image size | `header_1920` (1920×1920 box, no crop) registered in **Image Regenerate & Select Crop** (option `sirsc_use_custom_image_sizes`; backup `_backup_sirsc_use_custom_image_sizes_20261124`). Generated for the 86 images larger than 1920 px. New uploads get it automatically. Smaller images fall back to the original, which is ≤ 1920 px |
+| WPCode **2316** "YG: Bildgrössen für Hintergrundbilder + Header-Preload" (PHP, everywhere) | (1) Elementor ignores a background's *Image Resolution* when the image comes from a dynamic tag. The snippet remembers the element being parsed (`elementor/element/before_parse_css`) and applies its stored `background_image[size]` in `elementor/files/css/property`. (2) It prints `<link rel="preload" as="image" fetchpriority="high">` for the header image of pages (`jet-meta-pages-image-banner`), posts (`jet-meta-retreats-image-banner`) and events (`jet-cpt-event-banner-image`), and for the first container's background on full-width pages (Home). Mirrored in `wpcode-snippets/` |
+| Background sizes set (20 documents, backups in post meta `_backup_elementor_data_20261124`) | Cards → `featured_landscape`: listings 845, 1603, 283, 368, 1868. Event image column 1888/ec3aba6 → `large`. Headers → `header_1920`: templates 293, 323, 882, 1578, 1888 and Episode 490. Static section backgrounds → `header_1920`: pages 19, 25, 27, 33, retreat posts 278, 590, 2094, 2098, 2243. Podcast listing 395 keeps `large` (now honoured) |
+| Instagram feed (footer 183, widget `8c17df3`) | Widget custom CSS: `aspect-ratio: 3 / 4`, `height: auto !important` instead of the fixed 300 px height (backup as above). Matches Instagram's own profile grid; reels (9:16) and 4:5 posts lose much less |
+| R3 (photo size) dropped | With the Instagram Graph API the widget always loads `media_url` (the full file from Instagram's CDN, 640×1136 to 1206×2144). `photo_size` only sets the `width`/`height` attributes. Nothing to gain there |
+| Caches | Elementor CSS + element cache cleared, xCloud page cache purged, 13 pages warmed as a guest |
+
+### Result
+
+| | Before (mobile) | After (mobile) | After (desktop) |
+|---|---|---|---|
+| Performance | 52 | **64** | **92** |
+| LCP | 26.4 s | **5.9 s** | 1.2 s |
+| Speed Index | 11.2 s | 9.9 s | 2.5 s |
+| Time to Interactive | 37.4 s | 12.9 s | 2.5 s |
+| TBT | 370 ms | 120 ms | 30 ms |
+| Image-delivery savings left | 1.3 MB | 109 KB | 89 KB |
+| LCP request discovery | fails | **passes** | passes |
+
+Images referenced per page (guest, curl): Home 10.0 → 2.2 MB, /blog/ 8.4 → 2.2 MB, /retreats/ 4.9 → 2.1 MB,
+/events/ 3.8 → 2.1 MB, /energiecoaching/ 4.3 → 1.7 MB (about 1.35 MB of each is the lazy-loaded Instagram feed).
+
+Checked in Chrome: Home header, blog cards, event header and the Instagram tiles (277×370 = 3:4) render
+correctly, and the Kit's global colours are intact.
+
+### Still open
+
+- **R6 render blocking** is now the biggest item on mobile (est. −4.3 s FCP).
+- R4 (oversized originals, PNG screenshots, e.g. the 1.6 MB PNG on the Costa Rica retreat page), R5 (WebP), R7 (stale Linguise cache).
+- **Rule from now on:** every new background image in Elementor gets an *Image Resolution* (cards `featured_landscape`, full-width sections `header_1920`). Without one, Elementor delivers the original.

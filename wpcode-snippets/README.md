@@ -20,5 +20,6 @@ The files are normalised, so their own sha1 differs from `live_sha1`:
 | 338 | `338-completely-disable-comments.php` | php | everywhere | inactive (draft) |
 | 1385 | `1385-dynamic-year-copyright-shortcode.php` | php | shortcode `[wpcode id="1385"]` | active |
 | 1641 | `1641-subscribe-user-in-flodesk-using-webhook.php` | php | everywhere | active |
+| 2316 | `2316-yg-bildgrossen-fur-hintergrundbilder-header-preload.php` | php | everywhere | active |
 
-What each one does: [docs/custom-code.md](../docs/custom-code.md). Last pulled 2026-11-23.
+What each one does: [docs/custom-code.md](../docs/custom-code.md). Last pulled 2026-11-24.
