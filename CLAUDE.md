@@ -63,6 +63,7 @@ the tool to re-sync them.
 | [docs/custom-code.md](docs/custom-code.md) | WPCode snippets, what depends on them, the safe change procedure |
 | [docs/novamira-mcp.md](docs/novamira-mcp.md) | Working through the MCP: safety rules, traps, skills, abilities, memory store IDs |
 | [docs/newsletter-posts.md](docs/newsletter-posts.md) | **Recurring job:** turning a Flodesk newsletter into a blog post (structure, what to leave out, procedure, list of posts done) |
+| [docs/performance-audit-2026-11.md](docs/performance-audit-2026-11.md) | Image and speed audit 2026-11-24: PageSpeed mobile 52 / LCP 26 s, original-size background images, recommendations R1–R7 |
 | [docs/open-items.md](docs/open-items.md) | Findings and cleanup candidates waiting for a decision |
 | [docs/novamira-memories/](docs/novamira-memories/README.md) | Verbatim mirror of the site's Novamira memories |
 | [wpcode-snippets/](wpcode-snippets/README.md) | Byte-exact mirror of every WPCode snippet, `manifest.json` with `live_sha1` |
