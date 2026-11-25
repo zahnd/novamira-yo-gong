@@ -4,7 +4,7 @@ title: "Session log"
 type: project
 description: "One line per work session on yo-gong.com: date, what changed, where it is documented. Newest last."
 created: 2026-11-24 04:03:09
-updated: 2026-11-24 17:37:34
+updated: 2026-11-25 02:38:59
 ---
 
 # Session log
@@ -19,3 +19,5 @@ One line per session: `YYYY-MM-DD: what was done; what changed on the site; docs
 - 2026-11-24: Images R1/R2 implemented (Stefan: proceed): size header_1920 registered + generated for 86 images; WPCode 2316 (dynamic backgrounds honour Image Resolution + header preload); 20 Elementor documents got background sizes (backups _backup_elementor_data_20261124); Instagram footer tiles 3:4 (widget CSS). Elementor CSS cleared, xCloud purged, checked in Chrome. PageSpeed mobile 52->64, LCP 26.4->5.9 s; desktop 92. Next: render blocking (R6).
 - 2026-11-24: R6 render blocking, safe part (Stefan: proceed): WPCode 2320 (Adobe Fonts preconnect, defer linguise + sonaar scrollbar, footer-only Fluent Forms/Instagram CSS non-blocking). First upload had a stray `<?php` and stopped all everywhere snippets (2316, 1641) for ~4 min (14:15-14:19 UTC); rolled back at once, no form submissions in that window; re-uploaded with a combined parse check. Checked in Chrome (footer forms, Instagram, language switcher, no console errors). PageSpeed mobile 64->67, FCP 2.9->2.6 s, LCP 5.9->5.6 s. Left: 31 blocking stylesheets (needs a plugin or Elementor inline CSS: decision), Adobe Fonts font-display in the Adobe web project, R4, R5, R7.
 - 2026-11-24: Decision (Stefan): leave the remaining 31 stylesheets and the Adobe Fonts font-display as they are. Goal is a working, good site, not a perfect score; the client doesn't want to spend much. Nothing changed on the site.
+- 2026-11-24: Element Pack Pro removed from use (Stefan: subscription not renewed, fleet audit in Basic Memory infrastructure). Its only use was the sticky header (header 50, container e25d9f5); replaced by JetTricks 2.0.2 Sticky Header, visible on scroll up, top spacing 0 (backup option yg_backup_header50_ep_20261124). Element Pack Pro 10.0.3 DEACTIVATED (still installed, delete later). Elementor element cache of 50 deleted, xCloud purged, checked in Chrome (home, /blog/: hidden on scroll down, shown on scroll up, no bdt- markup, no console errors). Memory 2296 + repo docs/tech-stack.md, docs/elementor.md, Basic Memory YG tech stack + YG Elementor setup updated.
+- 2026-11-24: R7 (Stefan: delete the old Linguise cache): removed uploads/linguise/e200cec1... (536 files, 82.4 MB, last write 2024-12-23, from an earlier token). Active folder 8f2dbb54... = md5('data' . token) kept. /en/ checked as guest (200, lang=en). Repo docs/performance-audit-2026-11.md + open-items.md, Basic Memory YG performance audit + YG open items, wordpress linguise/Linguise data folder is md5 of data plus token.

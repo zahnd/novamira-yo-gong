@@ -88,6 +88,9 @@ Elementor (`elementor_font_display` = swap only covers Google Fonts).
 
 - `uploads/linguise/e200cec1…/cache`: an old Linguise translation cache (533 files, 82 MB, last written
   2024-11-10). The active cache is `8f2dbb54…` (200 MB). The `.php` files are Linguise cache, **not** malware.
+  **Deleted 2026-11-24 (R7, Stefan):** Linguise names its data folder `md5('data' . token)` (`linguise.php`), which is
+  `8f2dbb54…` for the current token; `e200cec1…` belonged to an earlier token (last write 2024-12-23). 536 files,
+  82.4 MB removed. `/en/` checked as a guest afterwards (200, `lang="en"`).
 - Podcast MP3s take 305 MB of uploads (expected).
 
 ## Recommendations (in order of effect ÷ risk)
@@ -100,7 +103,7 @@ Elementor (`elementor_font_display` = swap only covers Google Fonts).
 | R4 | Shrink oversized originals (> 2560 px or > 1 MB) to 2560 px at q82 and convert PNG photos to JPEG, with backups | Smaller library and smaller fallbacks; fixes 2195/2197/1702 | Medium: files are replaced in place, so back them up first |
 | R5 | Generate WebP for new uploads (`image_editor_output_format` jpeg→webp in WPCode) and regenerate the sizes; or deliver via a CDN (Cloudinary is installed but inactive; see `bergwerk/wordpress → cloudinary/` for its Elementor traps first) | −40–60 % more per image | Medium. Test on one post first |
 | R6 | Render blocking: Elementor performance features (element caching, optimized CSS/asset loading, inline font icons), load Fluent Forms CSS only where a form is, `font-display: swap` in the Adobe Fonts project | FCP −1–4 s | Medium, needs a visual check |
-| R7 | Delete the stale Linguise cache folder `e200cec1…` (82 MB) | Disk only | Low; confirm first |
+| R7 | Delete the stale Linguise cache folder `e200cec1…` (82 MB) | Disk only | **Done 2026-11-24** |
 
 Measure again with xCloud PageSpeed (`sites.pagespeed.scan`) after R1–R3.
 
@@ -138,7 +141,7 @@ correctly, and the Kit's global colours are intact.
 ### Still open
 
 - **R6 render blocking** is now the biggest item on mobile (est. −4.3 s FCP). Partly done, see below.
-- R4 (oversized originals, PNG screenshots, e.g. the 1.6 MB PNG on the Costa Rica retreat page), R5 (WebP), R7 (stale Linguise cache).
+- R4 (oversized originals, PNG screenshots, e.g. the 1.6 MB PNG on the Costa Rica retreat page), R5 (WebP). R7 done 2026-11-24.
 - **Rule from now on:** every new background image in Elementor gets an *Image Resolution* (cards `featured_landscape`, full-width sections `header_1920`). Without one, Elementor delivers the original.
 
 ## R6 render blocking (2026-11-24)
