@@ -2,9 +2,9 @@
 novamira_id: 2296
 title: "Traps on yo-gong.com"
 type: project
-description: "Non-obvious dependencies on yo-gong.com: Flodesk newsletter webhook in WPCode 1641 tied to Fluent Form 4 field names, year shortcode 1385 in the footer, comments off via Settings > Discussion (not WPCode), Linguise popup CSS in the Kit, server cron, fail2ban, Nginx Helper cannot purge (purge via xCloud)"
+description: "Non-obvious dependencies on yo-gong.com: Flodesk newsletter webhook in WPCode 1641 tied to Fluent Form 4 field names, year shortcode 1385 in the footer, comments off via Settings > Discussion (not WPCode), Linguise popup CSS in the Kit, server cron, fail2ban, Nginx Helper cannot purge (purge via xCloud), header sticky is JetTricks (Element Pack inactive)"
 created: 2026-11-24 04:03:07
-updated: 2026-11-24 15:24:58
+updated: 2026-11-24 20:02:03
 ---
 
 # Traps on yo-gong.com
@@ -23,6 +23,7 @@ Non-obvious things on www.yo-gong.com (first MCP audit 2026-11-23).
 - **WPCode 2320** (2026-11-24, render blocking R6): preconnects Adobe Fonts, defers the head scripts linguise_switcher and sonaar-music-scrollbar, and loads the Fluent Forms and JetElements Instagram stylesheets without blocking (they are only in the footer and the click-only popup 1362). If a form is ever placed near the top of a page, take the Fluent Forms handles out of 2320's list or it shows unstyled for a moment.
 - **WPCode `everywhere` snippets run as one eval()**: one broken snippet stops 1641, 2316 and 2320 together, with no error on the page. Happened 2026-11-24 for 4 minutes (stray `<?php`).
 - **Instagram footer** (JetElements, widget 8c17df3 in footer 183): images come from Instagram's CDN at full size via the Graph API; the widget's photo_size setting changes nothing. Tiles are 3:4 via widget custom CSS since 2026-11-24.
+- **The sticky header is JetTricks, not Element Pack** (since 2026-11-24; Element Pack Pro is deactivated because its subscription is not renewed). Header 50, container e25d9f5: JetTricks Sticky Column on, Sticky Behavior "Sticky Header" (`fixed`), Sticky Visibility "On Scroll Up", desktop/tablet/mobile, stuck background = global colour 9fb6c81 (#F7EFDE). **Top Spacing must be 0**: JetTricks' default 50 pushes the header 50 px down. Backup of the Element Pack version: option `yg_backup_header50_ep_20261124`. The container custom CSS sets `transform: none; will-change: auto` on the visible stuck state: JetTricks' transform would otherwise trap fixed children (menus, off-canvas, popups) inside the header.
 
 **Why:** these are the places where a harmless-looking change breaks something without an error.
-**How to apply:** check this list before touching forms, the footer, comments, WPCode or Linguise.
+**How to apply:** check this list before touching forms, the footer, the header, comments, WPCode or Linguise.

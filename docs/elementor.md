@@ -12,7 +12,7 @@ _Verified through the Novamira MCP on 2026-11-23._
 
 | ID | Title | Type | Conditions |
 |---|---|---|---|
-| 50 | Header | header | entire site |
+| 50 | Header | header | entire site. Sticky via **JetTricks** on container `e25d9f5` (Sticky Header, visible on scroll up, top spacing 0, stuck background global `9fb6c81`; custom CSS `transform: none; will-change: auto` on the visible stuck state so fixed children aren't trapped); was Element Pack until 2026-11-24 |
 | 183 | Footer | footer | entire site. Contains Fluent Forms 3 (contact) and 4 (newsletter) and the year shortcode `[wpcode id="1385"]` |
 | 1362 | Newsletter | popup | entire site (`include/general`); contains form 4 |
 | 293 | Single Page (header image) | single-page | pages 23, 25, 27, 29, 31, 33, 35, 1856 |

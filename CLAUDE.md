@@ -12,7 +12,7 @@ the tool to re-sync them.
 | | |
 |---|---|
 | CMS | WordPress 7.1.5, PHP 8.4, locale `de_CH`, timezone Europe/Zurich. **Production, no staging** |
-| Theme / builder | Hello Elementor (no child theme) + **Elementor / Elementor Pro 4.4.1** (v3 widgets, Theme Builder), Element Pack Pro, JetElements, JetTricks |
+| Theme / builder | Hello Elementor (no child theme) + **Elementor / Elementor Pro 4.4.1** (v3 widgets, Theme Builder), JetElements, JetTricks (sticky header); Element Pack Pro inactive since 2026-11-24 |
 | Content model | **JetEngine**: CPTs `event`, `person`, `jet-cpt-sessions`, `jet-cpt-location`, `newsletter`; meta boxes on retreat posts, podcast episodes (`sr_playlist`, Sonaar) and pages; 15 queries, 10 listings |
 | Forms / mail | Fluent Forms 3 (contact) and 4 (newsletter, forwarded to **Flodesk** by WPCode 1641), both in the footer. FluentSMTP → Postmark |
 | Languages | DE (default) + EN machine translation through **Linguise** |

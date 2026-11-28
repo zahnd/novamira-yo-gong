@@ -26,7 +26,7 @@ Three administrators: `webmaster` (ID 1, **the MCP user: never change its creden
 | Plugin | Version | Active | Use on this site |
 |---|---|---|---|
 | Elementor / Elementor Pro | 4.4.1 | yes | Builder, Theme Builder, popups, loop items |
-| Element Pack Pro (BdThemes) | 10.0.3 | yes | Extra widgets (`bdt-*`) |
+| Element Pack Pro (BdThemes) | 10.0.3 | **no** (deactivated 2026-11-24, subscription not renewed) | Was only used for the sticky header; that is JetTricks now ([elementor.md](elementor.md)) |
 | JetEngine | 3.9.1.2 | yes | CPTs, meta boxes, queries, listings ([content-model.md](content-model.md)) |
 | JetElements | 2.9.2.8 | yes | Extra widgets (`jet-*`) |
 | JetTricks | 2.0.2 | yes | Elementor effects/tricks |
